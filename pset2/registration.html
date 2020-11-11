@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML Form</title>
+        <script type="text/javascript">
+            function validateEmail() {
+                var emailText = document.getElementById('email').value;
+                var pattern = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+                if (pattern.test(emailText)) {
+                    return true;
+                } else {
+                    alert('You have entered an invalid email address! ');
+                    return false;
+                }
+            };
+
+            function validatePhone() {
+                var phoneNumber = document.getElementById('phone').value;
+                if(phoneNumber.length > 10) {
+                    return true;
+                } else {
+                    alert('You have entered an invalid phone number! ')
+                }
+            };
+
+            function validatePassword() {
+                var password = document.getElementById('password').value;
+                var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+                if(pattern.test(password)) {
+                    return true;
+                } else {
+                    alert('Your password must contain at least a small letter, a capital letter and a number! ');
+                    return false;
+                }
+            }
+
+            var checkPassword = function() {
+                if (document.getElementById('password').value ==
+                    document.getElementById('reenterpassword').value) {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = 'Matching';
+                } else {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = 'Not matching';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Registration Form</h1>
+        <form name="registform" id="registform" onsubmit="return validateEmail(), validatePhone(), validatePassword();">
+            <label for="name">Name   :     </label>
+            <br>
+            <input type="text" id="name" required>
+            <br><br>
+            <label for="email">E-mail :      </label>
+            <br>
+            <input type="email" id="email" required>
+            <br><br>
+            <label for="Password">Password : </label>
+            <br>
+            <input type="password" id="password" onkeyup='checkPassword();' required> 
+            <br><br>
+            <label for="reenterpassword">Re-enter Password :      </label>
+            <br>
+            <input type="password" id="reenterpassword" onkeyup='checkPassword();' required>
+            <span id='message'></span>
+            <br><br>
+            <label for="phone">Phone :   </label>
+            <br>
+            <input type="text" id="phone" required>
+            <br><br>
+            <label for="address">Address :   </label>
+            <br>
+            <input type="text" id="address" required>
+            <br><br>
+            <input type="submit"  name="submit" value="Submit" id="submit">
+        </form>
+    </body>
+</html>
